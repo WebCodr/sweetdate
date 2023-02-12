@@ -1,17 +1,29 @@
 package io.webcodr.sweetdate.extension
 
-import io.webcodr.sweetdate.unit.Days
-import io.webcodr.sweetdate.unit.Months
 import io.webcodr.sweetdate.unit.Unit
-import io.webcodr.sweetdate.unit.Weeks
-import io.webcodr.sweetdate.unit.Years
 import java.time.LocalDate
 
-operator fun LocalDate.plus(unit: Unit): LocalDate {
-    return when(unit) {
-        is Days -> this.plusDays(unit.days)
-        is Weeks -> this.plusWeeks(unit.weeks)
-        is Months -> this.plusMonths(unit.months)
-        is Years -> this.plusYears(unit.years)
+enum class Sign {
+    PLUS, MINUS
+}
+
+fun add(
+    date: LocalDate,
+    unit: Unit,
+    sign: Sign
+): LocalDate {
+    val value = when(sign) {
+        Sign.PLUS -> unit.value
+        Sign.MINUS -> -unit.value
     }
+
+    return date.plus(value, unit.chronoUnit)
+}
+
+operator fun LocalDate.plus(unit: Unit): LocalDate {
+    return add(this, unit, Sign.PLUS)
+}
+
+operator fun LocalDate.minus(unit: Unit): LocalDate {
+    return add(this, unit, Sign.MINUS)
 }

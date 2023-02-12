@@ -1,8 +1,20 @@
 package io.webcodr.sweetdate.unit
 
-sealed class Unit
+import java.time.temporal.ChronoUnit
 
-class Days(val days: Long): Unit()
-class Weeks(val weeks: Long): Unit()
-class Months(val months: Long): Unit()
-class Years(val years: Long): Unit()
+sealed class Unit(val value: Long) {
+    abstract val chronoUnit: ChronoUnit
+}
+
+class Days(value: Long): Unit(value) {
+    override val chronoUnit = ChronoUnit.DAYS
+}
+class Weeks(value: Long): Unit(value) {
+    override val chronoUnit = ChronoUnit.WEEKS
+}
+class Months(value: Long): Unit(value) {
+    override val chronoUnit = ChronoUnit.MONTHS
+}
+class Years(value: Long): Unit(value) {
+    override val chronoUnit = ChronoUnit.YEARS
+}

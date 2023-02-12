@@ -10,9 +10,10 @@ import org.junit.jupiter.api.Assertions.*
 import java.time.LocalDate
 
 internal class LocalDateTest {
+    private val baseDate = LocalDate.now()
+
     @Test
     fun testPlusDays() {
-        val baseDate = LocalDate.now()
         val result = baseDate + Days(10)
 
         assertEquals(baseDate.plusDays(10), result)
@@ -20,7 +21,6 @@ internal class LocalDateTest {
 
     @Test
     fun testPlusWeeks() {
-        val baseDate = LocalDate.now()
         val result = baseDate + Weeks(10)
 
         assertEquals(baseDate.plusWeeks(10), result)
@@ -28,7 +28,6 @@ internal class LocalDateTest {
 
     @Test
     fun testPlusMonths() {
-        val baseDate = LocalDate.now()
         val result = baseDate + Months(10)
 
         assertEquals(baseDate.plusMonths(10), result)
@@ -36,9 +35,36 @@ internal class LocalDateTest {
 
     @Test
     fun testPlusYears() {
-        val baseDate = LocalDate.now()
         val result = baseDate + Years(10)
 
         assertEquals(baseDate.plusYears(10), result)
+    }
+
+    @Test
+    fun testMinusDays() {
+        val result = baseDate - Days(10)
+
+        assertEquals(baseDate.minusDays(10), result)
+    }
+
+    @Test
+    fun testMinusWeeks() {
+        val result = baseDate - Weeks(10)
+
+        assertEquals(baseDate.minusWeeks(10), result)
+    }
+
+    @Test
+    fun testMinusMonths() {
+        val result = baseDate - Months(10)
+
+        assertEquals(baseDate.minusMonths(10), result)
+    }
+
+    @Test
+    fun testMinusYears() {
+        val result = baseDate - Years(10)
+
+        assertEquals(baseDate.minusYears(10), result)
     }
 }
